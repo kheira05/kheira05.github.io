@@ -14,8 +14,10 @@
     <p id="y"></p>
 </body>
 <script>
-    window.addEventListener('deviceorientation', function(event) {
-  coord.innerHTML = "z : " + event.alpha + " x : " + event.beta + " y : " + event.gamma;
+  window.addEventListener('deviceorientation', function(event) {
+  x.innerHTML = " x : " + event.beta;
+  y.innerHTML = " y : " + event.gamma;
+  z.innerHTML = " z : " + event.alpha;
 });
 </script>
 </html>
