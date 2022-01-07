@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div>
+        <h1>Exo2</h1>
+    </div>
 </body>
+<script>
+    window.addEventListener('deviceorientation', function(event) {
+  coord.innerHTML = "z : " + event.alpha + " x : " + event.beta + " y : " + event.gamma;
+});
+</script>
 </html>
