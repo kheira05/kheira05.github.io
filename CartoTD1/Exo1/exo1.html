@@ -10,7 +10,7 @@
     <h1>TD1 - Exo 1</h1>
    <div>
        <p id="coord"></p>
-       <p></p>
+       <p id="coord2"></p>
        <p></p>
    </div>
 </body>
@@ -26,6 +26,14 @@
     function error(err) {
       console.warn(`ERREUR (${err.code}): ${err.message}`);
     }
+    function success2(pos) {
+      var crd = pos.coords;
+      coord.innerText ='Votre position actuelle est : ';
+      coord.innerText +=' Latitude : ' +  crd.latitude;
+      coord.innerHTML += ' Longitude : '+  crd.longitude;
+      coord.innerHTML +=' La précision est de ' + crd.accuracy +' mètres.';
+    }
     navigator.geolocation.getCurrentPosition(success, error, options);
+    navigator.geolocation.watchPosition(success2, error, options);
     </Script>
 </html>
