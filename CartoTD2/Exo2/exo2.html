@@ -18,6 +18,7 @@
 </head>
 <body>
     <h1>Exo 2</h1>
+
     <div>
         <p id="coord"></p>
         <p id="coord2"></p>
@@ -25,6 +26,7 @@
 
    <div id="map" style="height:500px"></div>
    <div id="map2" style="height:500px"></div>
+   <div id="map3" style="height:500px"></div>
 
 </body>
 
@@ -74,16 +76,53 @@ var circle = L.circle(latlngs ,circleOptions).addTo(map);
     
 }
 
+function success3(pos) {
+var map = L.map('map3').setView([43.267681, 6.640711], 8);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker([43.6961, 7.27178]).addTo(map);
+L.marker([43.3 , 5.4]).addTo(map);
+
+var markerFrom = L.marker([43.6961, 7.27178]).addTo(map);
+var markerTo =  L.marker([43.3 , 5.4]).addTo(map);
+var from = markerFrom.getLatLng();
+var to = markerTo.getLatLng();
+
+var latlngs = [ [43.6961, 7.27178], [43.3 , 5.4]];
+var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map)
+               .bindPopup("Marseille - Nice : " + (from.distanceTo(to)/1000).toFixed(0/1000000) + ' km')
+               .openPopup();
+    
+}
+
 function error(err) {
   console.warn(`ERREUR (${err.code}): ${err.message}`);
 }
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 navigator.geolocation.getCurrentPosition(success2, error, options);
+navigator.geolocation.getCurrentPosition(success3, error, options);
 
 </Script>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
