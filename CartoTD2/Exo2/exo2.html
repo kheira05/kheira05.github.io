@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,35 +8,85 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script type="text/javascript" src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js?v1.3.0"></script>
     <title>Exo 2</title>
+
+    <style>
+        div {
+          width: 800px;
+        }
+        </style>
+
 </head>
 <body>
     <h1>Exo 2</h1>
+    <div>
+        <p id="coord"></p>
+        <p id="coord2"></p>
+    </div>
+
    <div id="map" style="height:500px"></div>
+   <div id="map2" style="height:500px"></div>
+
 </body>
+
 <Script>
 var options = {enableHighAccuracy: true,timeout: 5000,maximumAge: 0};
-function success(pos) {
-var map = L.map('map').setView([25.774, -80.19], 5);
-var layer = new L.StamenTileLayer("toner").addTo(map);
-L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png').addTo(map);
-L.marker([18.466, -66.118] ).addTo(map);
-L.marker([32.321, -64.757] ).addTo(map);
-L.marker([25.774, -80.19] ).addTo(map);
 
-var latlngs = [
-   [18.466, -66.118],
-   [32.321, -64.757],
-   [25.774, -80.19]
-];
-var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+function success(pos) {
+    var map = L.map('map').setView([25.774, -80.19], 5);
+    var layer = new L.StamenTileLayer("toner").addTo(map);
+    L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png').addTo(map);
+    L.marker([18.466, -66.118]).addTo(map); 
+    L.marker([32.321, -64.757]).addTo(map);   
+    L.marker([25.774, -80.19]).addTo(map);       
+    var latlngs = [
+    [18.466, -66.118],
+    [32.321, -64.757],
+    [25.774, -80.19]
+    ];
+    var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+}
+
+function success2(pos) {
+    var crd = pos.coords;
+  coord.innerText ='Votre position actuelle est : ';
+  coord.innerText +=' Latitude : ' +  crd.latitude;
+  coord.innerHTML += ' Longitude : '+  crd.longitude;
+  coord.innerHTML +=' La précision est de ' + crd.accuracy +' mètres.';
+
+var map = L.map('map2').setView([crd.latitude, crd.longitude], 100);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker([crd.latitude, crd.longitude]).addTo(map);
+
+var latlngs = [crd.latitude, crd.longitude];
+
+var circleOptions = {
+   radius : crd.accuracy, 
+   color: 'red',
+   fillColor: '#f03',
+   fillOpacity: 0
+}
+
+var circle = L.circle(latlngs ,circleOptions).addTo(map);
+    
 }
 
 function error(err) {
   console.warn(`ERREUR (${err.code}): ${err.message}`);
 }
+
 navigator.geolocation.getCurrentPosition(success, error, options);
+navigator.geolocation.getCurrentPosition(success2, error, options);
+
 </Script>
+
 </html>
+
+
+
 
 
 
