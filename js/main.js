@@ -155,9 +155,11 @@
      	   popupToggle();
      	   popupSlideshow();
      	   popupDetails();
+		   popupDetailsToggle();
      	}
      })
 
+	 // btn close project choosen
      closeBtn.addEventListener("click", () =>{
      	popupToggle();
      	if(projectDetailsContainer.classList.contains("active")){
@@ -165,6 +167,7 @@
      	}
      })
 
+	 // popup all project
      function popupToggle(){
      	popup.classList.toggle("open");
      	bodyScrollingToggle();
@@ -207,11 +210,11 @@
 
      function popupDetails(){
      	 // if portfolio-item-details not exists
-     	 if(!portfolioItems[itemIndex].querySelector(".portfolio-item-details")){
+     	 //if(!portfolioItems[itemIndex].querySelector(".portfolio-item-details")){
             projectDetailsBtn.style.display="none";
-            return; /*end function execution*/
-     	 }
-     	 projectDetailsBtn.style.display="block";
+            //return; /*end function execution*/
+     	 //}
+     	// projectDetailsBtn.style.display="block";
      	// get the project details
      	const details = portfolioItems[itemIndex].querySelector(".portfolio-item-details").innerHTML;
      	// set the project details
@@ -226,24 +229,24 @@
      	popup.querySelector(".pp-project-category").innerHTML = category.split("-").join(" ");
      }
      
-     projectDetailsBtn.addEventListener("click",() =>{
-     	popupDetailsToggle();
-     })
+    //  projectDetailsBtn.addEventListener("click",() =>{
+    //  	popupDetailsToggle();
+    //  })
 
      function popupDetailsToggle(){
-       if(projectDetailsContainer.classList.contains("active")){
-       	projectDetailsBtn.querySelector("i").classList.remove("fa-minus");
-       	projectDetailsBtn.querySelector("i").classList.add("fa-plus");
-         projectDetailsContainer.classList.remove("active");
-         projectDetailsContainer.style.maxHeight = 0 + "px"
-       }
-       else{
-       	projectDetailsBtn.querySelector("i").classList.remove("fa-plus");
-       	projectDetailsBtn.querySelector("i").classList.add("fa-minus");
+    //    if(projectDetailsContainer.classList.contains("active")){
+    //    	projectDetailsBtn.querySelector("i").classList.remove("fa-minus");
+    //    	projectDetailsBtn.querySelector("i").classList.add("fa-plus");
+    //     projectDetailsContainer.classList.remove("active");
+    //     projectDetailsContainer.style.maxHeight = 0 + "px"
+    //    }
+    //    else{
+    	//  projectDetailsBtn.querySelector("i").classList.remove("fa-plus");
+       	//  projectDetailsBtn.querySelector("i").classList.add("fa-minus");
        	 projectDetailsContainer.classList.add("active");
        	 projectDetailsContainer.style.maxHeight = projectDetailsContainer.scrollHeight + "px";
        	 popup.scrollTo(0,projectDetailsContainer.offsetTop);
-       }
+    //    }
      }
    
 })();
