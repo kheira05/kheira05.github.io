@@ -1043,7 +1043,7 @@ portfolio section
    border-radius: 5px;
 }
 .portfolio-popup .pp-main{
-   min-height: 100vh;
+
    max-width: 1350px;
    width: 85%;
    margin:auto;
