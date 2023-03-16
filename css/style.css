@@ -1077,7 +1077,7 @@ portfolio section
 }
 .portfolio-popup .pp-close{
    position: absolute;
-   right:0;
+   right:50px;
    border-radius: 50%;
    height: 40px;
    width: 40px;
